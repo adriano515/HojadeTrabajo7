@@ -5,9 +5,14 @@ import java.util.Hashtable;
 // Clase para ordenar las cadenas
 
 public class Clasi{
+	Hashtable<Character,Integer> table;
+	public Clasi(){
+	 table = new Hashtable<Character,Integer>();	
+	}
 	
-	Hashtable<Character,Integer> table = new Hashtable<Character,Integer>();
-	
+	public Hashtable getHashtable(){
+		return table;
+	}
 	public void cadena(String str){
 	
 		char[] cadena= new char[str.length()];
