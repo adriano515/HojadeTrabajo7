@@ -19,13 +19,24 @@ public class Heap{
 	}
 	
 	public void Lista(){
+		char[] arreglo = new char[lista.length];
 		int i=0;
 		int valor =0;
 		Nodo variableauxiliar = new Nodo();
 		for(char c : cadena ) {
+			int contador =0;
+			for (int j=0;j<lista.length;j++){
+				if(arreglo[j]==c){
+					contador++;
+				}
+			}
+			if (contador<1){
 			valor = hash.get(c);
 			nodoActual = new Nodo(c,valor);
-		  lista[i] = nodoActual;
+			arreglo[i]=c;
+			lista[i] = nodoActual;
+			i++;
+			}
 		}
 		//ordenamiento
 			 
@@ -44,22 +55,20 @@ public class Heap{
 	    }
 	
 	public void Arbol(int posicion){
-		if( posicion > lista.length){
+		if( posicion >= lista.length){
 			return;
 		}
-		if (lista[0].getPadre()==null){
-			int valor1 = lista[posicion].getPeso();
-			int valor2 = lista[posicion+1].getPeso();
-			nodoActual = new Nodo(valor1+valor2);
-			nodoActual.setHijoizq(lista[posicion]);
-			nodoActual.setHijoder(lista[posicion+1]);
-			lista[posicion].setPadre(nodoActual);
-			lista[posicion+1].setPadre(nodoActual);
-			Arbol(posicion+2);
-			}
 		else{
+			while (lista[0].getPadre()==null){
+			int valor1 = lista[0].getPeso();
+			int valor2 = lista[1].getPeso();
+			nodoActual = new Nodo(valor1+valor2);
+			nodoActual.setHijoizq(lista[0]);
+			nodoActual.setHijoder(lista[1]);
+			lista[0].setPadre(nodoActual);
+			lista[1].setPadre(nodoActual);
+			}
 			int valor1 = lista[posicion].getPeso();
-			int valor2 = lista[posicion+1].getPeso();
 			if(valor1<nodoActual.getPeso()){
 				Nodo temporal = nodoActual;
 				nodoActual = new Nodo(valor1+nodoActual.getPeso());
@@ -68,8 +77,22 @@ public class Heap{
 				lista[posicion].setPadre(nodoActual);
 				temporal.setPadre(nodoActual);
 				Arbol(posicion+1);
+				if( posicion+1 >= lista.length){
+					return;
+				}
+			}
+			if((lista[posicion+1]==null)){
+				
+				Nodo temporal = nodoActual;
+				nodoActual = new Nodo(valor1+nodoActual.getPeso());
+				nodoActual.setHijoizq(lista[posicion]);
+				nodoActual.setHijoder(temporal);
+				lista[posicion].setPadre(nodoActual);
+				temporal.setPadre(nodoActual);
+				return;
 			}
 			if(valor1>nodoActual.getPeso()){
+				int valor2 = lista[posicion+1].getPeso();
 				Nodo temporal = nodoActual;
 				nodoActual = new Nodo(valor1+valor2);
 				nodoActual.setHijoizq(lista[posicion]);
@@ -83,10 +106,12 @@ public class Heap{
 				temporal.setPadre(nodoActual);
 				temporal2.setPadre(nodoActual);
 				Arbol(posicion+2);
+				if( posicion+2 >= lista.length){
+					return;
+				}
+			}
 			}
 		}
-	}
-	
 	public Nodo getNodoActual(){
 		return nodoActual;
 	}

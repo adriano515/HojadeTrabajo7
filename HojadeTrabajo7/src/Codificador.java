@@ -8,16 +8,21 @@ public class Codificador{
 	char[] cadena;
 	String codigo;
 	String caracteres;
+	Nodo nodoActual1;
 	
 	public Codificador(String str){
 		arbol = new Heap(str);
+		arbol.Lista();
+		arbol.Arbol(2);
 		nodoActual = arbol.getNodoActual();
+		nodoActual1= nodoActual;
 		lista = arbol.getLista();
 		hash = arbol.getHash();
 		cadena = arbol.getCadena();
 		codigo = "";
 	}
 	public void recorrer(Nodo nodoActual,char key){
+		if(nodoActual.getHijoizq()!=null){
 		if(nodoActual.getHijoizq().getCarac() == '\0'){
 			if (nodoActual.getHijoizq().getHijoizq().getCarac() == key){
 				codigo = codigo + "0";
@@ -27,6 +32,10 @@ public class Codificador{
 				codigo = codigo + "1";
 				return;
 			}
+		}
+		}
+		if(nodoActual.getHijoizq()==null){
+			return;
 		}
 		else{
 			if(nodoActual.getHijoizq().getCarac()==key){
@@ -55,13 +64,13 @@ public class Codificador{
 	public String recorrerR(char[] binario){
 		for (int i =0; i<binario.length;i++){
 			if (binario[i]==(char)(49)){
-				nodoActual = nodoActual.getHijoder();
+				nodoActual1 = nodoActual1.getHijoder();
 			}
 			if (binario[i]==(char)(48)){
-				nodoActual = nodoActual.getHijoizq();
+				nodoActual1 = nodoActual1.getHijoizq();
 			}
 			}
-		if (nodoActual==null){
+		if (nodoActual1==null){
 			return "invalido";
 		}
 		return Character.toString(nodoActual.getCarac());
