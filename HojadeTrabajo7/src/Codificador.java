@@ -9,6 +9,7 @@ public class Codificador{
 	String codigo;
 	String caracteres;
 	Nodo nodoActual1;
+	Nodo temporal;
 	
 	public Codificador(String str){
 		arbol = new Heap(str);
@@ -16,10 +17,12 @@ public class Codificador{
 		arbol.Arbol(2);
 		nodoActual = arbol.getNodoActual();
 		nodoActual1= nodoActual;
+		temporal = nodoActual;
 		lista = arbol.getLista();
 		hash = arbol.getHash();
 		cadena = arbol.getCadena();
 		codigo = "";
+		caracteres = "";
 	}
 	public void recorrer(Nodo nodoActual,char key){
 		if(nodoActual.getHijoizq()!=null){
@@ -56,6 +59,7 @@ public class Codificador{
 	}
 	public String str2code(){
 		for(char c : cadena ) {
+		nodoActual = temporal;
 		recorrer(nodoActual,c);
 		codigo = codigo + " ";
 	}
@@ -73,7 +77,7 @@ public class Codificador{
 		if (nodoActual1==null){
 			return "invalido";
 		}
-		return Character.toString(nodoActual.getCarac());
+		return Character.toString(nodoActual1.getCarac());
 		
 	}
 	public String code2str(String codigo){
@@ -82,11 +86,13 @@ public class Codificador{
 		separado = codigo.split(" ");
 		char[] binario;
 		for (int i = 0; i<separado.length;i++){
+			nodoActual1 = temporal;
 			binario = separado[i].toCharArray();
 			retorno = recorrerR(binario);
 			if (retorno.equals("invalido")){
 				caracteres = "cadena invalida";
 				return caracteres;
+				
 			}
 			caracteres = caracteres + retorno;
 		}

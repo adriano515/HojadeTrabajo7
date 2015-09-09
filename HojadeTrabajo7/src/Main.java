@@ -10,6 +10,6 @@ public class Main{
 		System.out.println("el codigo es"+ codificador.str2code());
 		System.out.println("Ingrese codigo");
 		String codigo = teclado.nextLine();
-		System.out.println("la cadena es" + codificador.code2str(codigo));
+		System.out.println("la cadena es " + codificador.code2str(codigo));
 	}
 }
