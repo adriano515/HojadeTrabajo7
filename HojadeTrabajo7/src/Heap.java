@@ -86,5 +86,20 @@ public class Heap{
 			}
 		}
 	}
+	
+	public Nodo getNodoActual(){
+		return nodoActual;
+	}
+	
 			
-		}
+	public char[] getCadena(){
+		return cadena;
+	}
+	public Hashtable getHash(){
+		return hash;
+	}
+	
+	public Nodo[] getLista(){
+		return lista;
+	}
+	}
