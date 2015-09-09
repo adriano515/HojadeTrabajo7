@@ -1,5 +1,9 @@
 import java.util.Hashtable;
 
+
+//Juan Luis Garcia
+//Freddie Batlle
+
 public class Codificador{
 	Heap arbol;
 	Nodo nodoActual;

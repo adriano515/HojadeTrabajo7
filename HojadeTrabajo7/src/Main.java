@@ -1,5 +1,9 @@
 import java.util.Scanner;
 
+
+//Juan Luis Garcia
+//Freddie Batlle
+
 public class Main{
 	public static void main (String[] args) {
 		Codificador codificador;

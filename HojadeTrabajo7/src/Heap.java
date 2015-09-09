@@ -1,5 +1,9 @@
 import java.util.Hashtable;
 
+
+//Juan Luis Garcia
+//Freddie Batlle
+
 public class Heap{
 	Nodo nodoActual;
 	Clasi tabla;
