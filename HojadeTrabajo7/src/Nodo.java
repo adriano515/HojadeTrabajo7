@@ -19,7 +19,13 @@ public class Nodo {
 		Hijoder = null;
 		Peso = 0;
 	}
-	
+	public Nodo(int peso){
+		this.Carac = '\0';
+		this.Peso = peso;
+		Padre = null;
+		Hijoizq = null;
+		Hijoder=null;
+	}
 	public Nodo(char cara,int peso) {
 		this.Carac = cara;
 		this.Peso = peso;

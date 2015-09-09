@@ -42,5 +42,49 @@ public class Heap{
 	            }
 	        }
 	    }
+	
+	public void Arbol(int posicion){
+		if( posicion > lista.length){
+			return;
+		}
+		if (lista[0].getPadre()==null){
+			int valor1 = lista[posicion].getPeso();
+			int valor2 = lista[posicion+1].getPeso();
+			nodoActual = new Nodo(valor1+valor2);
+			nodoActual.setHijoizq(lista[posicion]);
+			nodoActual.setHijoder(lista[posicion+1]);
+			lista[posicion].setPadre(nodoActual);
+			lista[posicion+1].setPadre(nodoActual);
+			Arbol(posicion+2);
+			}
+		else{
+			int valor1 = lista[posicion].getPeso();
+			int valor2 = lista[posicion+1].getPeso();
+			if(valor1<nodoActual.getPeso()){
+				Nodo temporal = nodoActual;
+				nodoActual = new Nodo(valor1+nodoActual.getPeso());
+				nodoActual.setHijoizq(lista[posicion]);
+				nodoActual.setHijoder(temporal);
+				lista[posicion].setPadre(nodoActual);
+				temporal.setPadre(nodoActual);
+				Arbol(posicion+1);
+			}
+			if(valor1>nodoActual.getPeso()){
+				Nodo temporal = nodoActual;
+				nodoActual = new Nodo(valor1+valor2);
+				nodoActual.setHijoizq(lista[posicion]);
+				nodoActual.setHijoder(lista[posicion+1]);
+				lista[posicion].setPadre(nodoActual);
+				lista[posicion+1].setPadre(nodoActual);
+				Nodo temporal2 = nodoActual;
+				nodoActual = new Nodo(temporal.getPeso()+temporal2.getPeso());
+				nodoActual.setHijoizq(temporal);
+				nodoActual.setHijoder(temporal2);
+				temporal.setPadre(nodoActual);
+				temporal2.setPadre(nodoActual);
+				Arbol(posicion+2);
+			}
+		}
+	}
 			
 		}
